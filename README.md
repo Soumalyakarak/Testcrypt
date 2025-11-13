@@ -10,7 +10,7 @@ The build system automatically detects CUDA:
 
 ---
 
-## 🖥️ Running on a Machine WITHOUT CUDA (CPU Only)
+## Running on a Machine WITHOUT CUDA (CPU Only)
 
 No NVIDIA GPU required.
 
@@ -29,17 +29,17 @@ make -j
 ### Expected Output:
 
 ```
-CPU MODE ⚠️ (GPU not available)
-AES TEST PASSED ✅
+CPU MODE (GPU not available)
+AES TEST PASSED 
 ```
 
 ---
 
-## 🚀 Running on a Machine WITH NVIDIA GPU (CUDA Enabled)
+## Running on a Machine WITH NVIDIA GPU (CUDA Enabled)
 
 Follow these steps on a GPU system.
 
-### 1️⃣ Install CUDA Toolkit
+### 1️ Install CUDA Toolkit
 
 ```bash
 sudo apt install nvidia-cuda-toolkit
@@ -53,7 +53,7 @@ Or install from [NVIDIA's official website](https://developer.nvidia.com/cuda-do
 nvcc --version
 ```
 
-### 2️⃣ Add a Real AES CUDA Kernel
+### 2️ Add a Real AES CUDA Kernel
 
 Open the file:
 
@@ -78,7 +78,7 @@ aes_encrypt_ctr_gpu<<<grid, block>>>(dOut, dIn, key, iv, nBlocks);
 Testcrypt/gpu/
 ```
 
-### 3️⃣ Build and Run (GPU Mode)
+### 3️ Build and Run (GPU Mode)
 
 ```bash
 git clone <repo_url>
@@ -98,7 +98,7 @@ GPU FOUND
 AES GPU TEST PASSED 
 ```
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### CUDA Not Detected
 
