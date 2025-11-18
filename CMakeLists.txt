@@ -12,18 +12,26 @@ add_library(cryption
     cpu/AEScpu.cpp
 )
 
-# Add CUDA only if available
+# Detect CUDA Toolkit
 find_package(CUDAToolkit)
+
 if (CUDAToolkit_FOUND)
     message(STATUS "CUDA Found Enabling GPU Mode")
-    target_sources(cryption PRIVATE gpu/AESCudaAdapter.cu)
+
+    # Add CUDA kernel files
+    target_sources(cryption PRIVATE
+        gpu/AESCudaAdapter.cu
+        gpu/AES_final.cu         
+    )
+
     target_include_directories(cryption PUBLIC gpu)
     target_link_libraries(cryption PUBLIC CUDA::cudart)
+
 else()
-    message(STATUS "CUDA Not Found ⚠️ CPU Mode Only")
+    message(STATUS "CUDA Not Found ! CPU Mode Only")
 endif()
 
-target_include_directories(cryption PUBLIC . cpu)
+target_include_directories(cryption PUBLIC . cpu gpu)
 target_link_libraries(cryption PUBLIC OpenSSL::SSL OpenSSL::Crypto)
 
 add_executable(testAES testAES.cpp)
